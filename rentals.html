@@ -3,96 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED-Share Monitor - 共享租借管理</title>
+    <title>共享租借管理 - 呼吸治療設備</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <!-- 側邊欄 -->
         <aside class="sidebar">
             <div class="logo-area">
-                <i class="fa-solid fa-heart-pulse"></i>
-                <div class="logo-text">
-                    <span class="logo-main">MED-Share</span>
-                    <span class="logo-sub">Monitor</span>
-                </div>
+                <i class="fa-solid fa-heart-pulse"></i> 
+                <h2>RespMonitor</h2>
             </div>
-            <div class="nav-title">病患列表</div>
+            <div class="nav-title">病房列表 (ICU/RCW)</div>
             <ul class="patient-list">
                 <li onclick="window.location.href='patient.html'">
                     <div class="p-info">
                         <span class="p-name">吳宥辰</span>
-                        <span class="p-ward">編號 P001</span>
+                        <span class="p-ward">5A-12</span>
                     </div>
                     <span class="status-dot status-red"></span>
                 </li>
                 <li onclick="window.location.href='patient.html'">
                     <div class="p-info">
                         <span class="p-name">林小美</span>
-                        <span class="p-ward">編號 P002</span>
-                    </div>
-                    <span class="status-dot status-green"></span>
-                </li>
-                <li onclick="window.location.href='patient.html'">
-                    <div class="p-info">
-                        <span class="p-name">陳大明</span>
-                        <span class="p-ward">編號 P003</span>
-                    </div>
-                    <span class="status-dot status-yellow"></span>
-                </li>
-                <li onclick="window.location.href='patient.html'">
-                    <div class="p-info">
-                        <span class="p-name">張志豪</span>
-                        <span class="p-ward">編號 P004</span>
-                    </div>
-                    <span class="status-dot status-green"></span>
-                </li>
-                <li onclick="window.location.href='patient.html'">
-                    <div class="p-info">
-                        <span class="p-name">劉恩希</span>
-                        <span class="p-ward">編號 P005</span>
+                        <span class="p-ward">5A-13</span>
                     </div>
                     <span class="status-dot status-green"></span>
                 </li>
             </ul>
         </aside>
 
-        <!-- 主內容：租借管理 -->
         <main class="main-content">
             <header class="top-bar">
-                <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-                <h1 class="app-title">MED-Share Monitor</h1>
-                <div class="nav-tabs">
-                    <a href="index.html" class="nav-btn">總覽</a>
-                    <a href="rentals.html" class="nav-btn active">共享租借</a>
-                    <a href="analytics.html" class="nav-btn">商業智慧分析</a>
+                <div class="top-left">
+                    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                    <h1>共享租借管理</h1>
                 </div>
-                <div class="user-profile">
-                    <span>Dr. Yang (R.T.)</span>
-                    <i class="fa-solid fa-user-doctor"></i>
+                <div class="top-right">
+                    <nav class="nav-links">
+                        <a href="index.html" class="nav-link">總覽</a>
+                        <a href="rentals.html" class="nav-link active">共享租借</a>
+                        <a href="analytics.html" class="nav-link">商業智慧分析</a>
+                    </nav>
+                    <div class="user-profile">
+                        <span>Respiratory RT</span>
+                        <i class="fa-solid fa-user-nurse"></i>
+                    </div>
                 </div>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h3>當前租借清單</h3>
-                    <div class="rentals-filters">
-                        <input type="text" class="search-input" placeholder="搜尋病患姓名或編號">
-                        <select class="status-select">
+                    <h3><i class="fa-solid fa-hand-holding-medical"></i> 當前租借清單</h3>
+                    <div class="filter-row">
+                        <input type="text" class="filter-input" placeholder="搜尋病患姓名或病房">
+                        <select class="filter-select">
                             <option>全部狀態</option>
                             <option>使用中</option>
                             <option>即將到期</option>
-                            <option>逾期未還</option>
+                            <option>逾期</option>
                         </select>
                     </div>
                 </div>
-
-                <table class="styled-table rentals-table">
+                <table class="styled-table">
                     <thead>
                         <tr>
                             <th>病患姓名</th>
-                            <th>病患編號</th>
+                            <th>病房</th>
                             <th>儀器名稱</th>
                             <th>設備編號</th>
                             <th>租借起始時間</th>
@@ -104,52 +81,65 @@
                     <tbody>
                         <tr>
                             <td>吳宥辰</td>
-                            <td>P001</td>
+                            <td>5A-12</td>
                             <td>可攜式肺量計</td>
                             <td>SP-PLM-004</td>
-                            <td>2025-11-20<br>14:30</td>
-                            <td>2025-11-27<br>14:30</td>
+                            <td>2025-11-20 14:30</td>
+                            <td>2025-11-27 14:30</td>
                             <td><span class="badge badge-yellow">即將到期</span></td>
-                            <td>
-                                <span class="ai-tag ai-warning">
-                                    建議於 24 小時內提醒病患回診帶回，以避免設備遺失。
-                                </span>
+                            <td class="ai-cell">
+                                <span class="ai-tag ai-warning">建議於 24 小時內提醒病患回診帶回，以避免設備遺失。</span>
                             </td>
                         </tr>
                         <tr>
                             <td>林小美</td>
-                            <td>P002</td>
+                            <td>5A-13</td>
                             <td>家用製氧機</td>
                             <td>OX-HOME-102</td>
-                            <td>2025-10-01<br>10:00</td>
-                            <td>2026-01-01<br>10:00</td>
+                            <td>2025-10-01 10:00</td>
+                            <td>2026-01-01 10:00</td>
                             <td><span class="badge badge-green">使用中</span></td>
-                            <td>
-                                <span class="ai-tag ai-info">
-                                    依目前 SpO₂ 與再入院率，建議維持現行居家氧療方案，每月追蹤一次。
-                                </span>
+                            <td class="ai-cell">
+                                <span class="ai-tag ai-info">依目前 SpO₂ 與再入院率，建議維持現行居家氧療方案，每月追蹤一次。</span>
                             </td>
                         </tr>
                         <tr>
                             <td>陳大明</td>
-                            <td>P003</td>
+                            <td>5B-01</td>
                             <td>睡眠呼吸監測器</td>
                             <td>SLP-APN-221</td>
-                            <td>2025-11-10<br>20:00</td>
-                            <td>2025-11-17<br>09:00</td>
-                            <td><span class="badge badge-red">逾期未還</span></td>
-                            <td>
-                                <span class="ai-tag ai-danger">
-                                    建議聯繫個案管理師確認設備去向，並評估是否影響睡眠呼吸暫停評估時程。
-                                </span>
+                            <td>2025-11-10 20:00</td>
+                            <td>2025-11-17 09:00</td>
+                            <td><span class="badge badge-red">逾期</span></td>
+                            <td class="ai-cell">
+                                <span class="ai-tag ai-critical">建議聯繫個案管理師確認設備去向，並評估是否影響睡眠呼吸暫停評估時程。</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-diagram-project"></i> 儀器使用摘要</h3>
+                </div>
+                <ul class="ai-list">
+                    <li>
+                        <span class="ai-tag ai-info">家用製氧機使用率高</span>
+                        COPD 與肺纖維化個案為主要租借族群，建議與耗材補給流程整合。
+                    </li>
+                    <li>
+                        <span class="ai-tag ai-warning">可攜式監測器常有逾期未歸還</span>
+                        建議導入「借用前簽署同意＋押金或簡訊提醒」機制。
+                    </li>
+                    <li>
+                        <span class="ai-tag ai-suggest">可作為未來居家共享醫材平台基礎資料</span>
+                        可輸出給管理單位做成本與效益分析。
+                    </li>
+                </ul>
+            </div>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
