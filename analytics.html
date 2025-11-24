@@ -3,101 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED-Share Monitor - 商業智慧分析</title>
+    <title>商業智慧分析 - 呼吸治療數據視覺化</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- 側邊欄 -->
         <aside class="sidebar">
             <div class="logo-area">
-                <i class="fa-solid fa-heart-pulse"></i>
-                <div class="logo-text">
-                    <span class="logo-main">MED-Share</span>
-                    <span class="logo-sub">Monitor</span>
-                </div>
+                <i class="fa-solid fa-heart-pulse"></i> 
+                <h2>RespMonitor</h2>
             </div>
-            <div class="nav-title">病患列表</div>
+            <div class="nav-title">病房列表 (ICU/RCW)</div>
             <ul class="patient-list">
                 <li onclick="window.location.href='patient.html'">
                     <div class="p-info">
                         <span class="p-name">吳宥辰</span>
-                        <span class="p-ward">編號 P001</span>
+                        <span class="p-ward">5A-12</span>
                     </div>
                     <span class="status-dot status-red"></span>
                 </li>
                 <li onclick="window.location.href='patient.html'">
                     <div class="p-info">
                         <span class="p-name">林小美</span>
-                        <span class="p-ward">編號 P002</span>
-                    </div>
-                    <span class="status-dot status-green"></span>
-                </li>
-                <li onclick="window.location.href='patient.html'">
-                    <div class="p-info">
-                        <span class="p-name">陳大明</span>
-                        <span class="p-ward">編號 P003</span>
-                    </div>
-                    <span class="status-dot status-yellow"></span>
-                </li>
-                <li onclick="window.location.href='patient.html'">
-                    <div class="p-info">
-                        <span class="p-name">張志豪</span>
-                        <span class="p-ward">編號 P004</span>
-                    </div>
-                    <span class="status-dot status-green"></span>
-                </li>
-                <li onclick="window.location.href='patient.html'">
-                    <div class="p-info">
-                        <span class="p-name">劉恩希</span>
-                        <span class="p-ward">編號 P005</span>
+                        <span class="p-ward">5A-13</span>
                     </div>
                     <span class="status-dot status-green"></span>
                 </li>
             </ul>
         </aside>
 
-        <!-- 主內容：商業智慧分析 -->
         <main class="main-content">
             <header class="top-bar">
-                <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-                <h1 class="app-title">MED-Share Monitor</h1>
-                <div class="nav-tabs">
-                    <a href="index.html" class="nav-btn">總覽</a>
-                    <a href="rentals.html" class="nav-btn">共享租借</a>
-                    <a href="analytics.html" class="nav-btn active">商業智慧分析</a>
+                <div class="top-left">
+                    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                    <h1>商業智慧分析儀表板</h1>
                 </div>
-                <div class="user-profile">
-                    <span>Dr. Yang (R.T.)</span>
-                    <i class="fa-solid fa-user-doctor"></i>
+                <div class="top-right">
+                    <nav class="nav-links">
+                        <a href="index.html" class="nav-link">總覽</a>
+                        <a href="rentals.html" class="nav-link">共享租借</a>
+                        <a href="analytics.html" class="nav-link active">商業智慧分析</a>
+                    </nav>
+                    <div class="user-profile">
+                        <span>BI Analyst</span>
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
                 </div>
             </header>
 
+            <div class="charts-grid bi-grid">
+                <div class="card chart-card">
+                    <h3><i class="fa-solid fa-arrow-trend-up"></i> 平均 SpO₂ 與 30 天內再入院率</h3>
+                    <canvas id="biOutcomeChart"></canvas>
+                </div>
+                <div class="card chart-card">
+                    <h3><i class="fa-solid fa-stethoscope"></i> 不同疾病族群呼吸風險雷達圖</h3>
+                    <canvas id="deviceRadarChart"></canvas>
+                </div>
+                <div class="card chart-card">
+                    <h3><i class="fa-solid fa-wind"></i> RR vs EtCO₂ 散佈圖（通氣效率）</h3>
+                    <canvas id="rrEtco2Scatter"></canvas>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">
-                    <h3>商業智慧分析儀表板</h3>
+                    <h3><i class="fa-solid fa-lightbulb"></i> 分析結果重點（數據的意義）</h3>
                 </div>
-                <!-- 以下為原本的圖表與分析內容 -->
-                <div class="analytics-grid">
-                    <div class="card chart-card">
-                        <h3>高風險事件趨勢</h3>
-                        <canvas id="riskTrendChart"></canvas>
-                    </div>
-                    <div class="card chart-card">
-                        <h3>回診 / 住院率變化</h3>
-                        <canvas id="readmissionChart"></canvas>
-                    </div>
-                    <div class="card chart-card">
-                        <h3>遠距監測介入後改善情形</h3>
-                        <canvas id="improvementChart"></canvas>
-                    </div>
-                </div>
+                <ul class="ai-list">
+                    <li>
+                        <span class="ai-tag ai-info">平均 SpO₂ 與再入院率呈反向關係</span>
+                        當居家監測 SpO₂ 維持在 94% 以上時，30 天內再入院率明顯下降，建議將 94% 設為警示與介入門檻。
+                    </li>
+                    <li>
+                        <span class="ai-tag ai-warning">COPD 與肺纖維化族群在雷達圖上風險較高</span>
+                        在 RR、EtCO₂ 變異度與急性惡化次數 3 個指標上明顯偏高，建議優先納入遠距呼吸監測計畫。
+                    </li>
+                    <li>
+                        <span class="ai-tag ai-critical">RR 與 EtCO₂ 散佈圖顯示部分個案有「高 RR 但正常 EtCO₂」</span>
+                        可能與焦慮或非真實呼吸衰竭有關，可減少不必要急診或住院。
+                    </li>
+                    <li>
+                        <span class="ai-tag ai-suggest">此頁面可作為未來與院方報告成效、爭取資源與撥款的 BI 介面基礎</span>
+                        例如：顯示引入居家監測後，急診回診率與再入院率的變化。
+                    </li>
+                </ul>
             </div>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
