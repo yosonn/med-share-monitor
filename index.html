@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>醫院呼吸治療監測系統 - 病患清單</title>
+    <title>MED-Share Monitor - 病患總覽</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- 側邊病患列表 -->
+        <!-- 側邊欄：病患清單 -->
         <aside class="sidebar">
             <div class="logo-area">
-                <i class="fa-solid fa-heart-pulse"></i> 
-                <h2>RespMonitor</h2>
+                <i class="fa-solid fa-heart-pulse"></i>
+                <div class="logo-text">
+                    <span class="logo-main">MED-Share</span>
+                    <span class="logo-sub">Monitor</span>
+                </div>
             </div>
             <div class="nav-title">病患列表</div>
             <ul class="patient-list">
@@ -56,257 +58,108 @@
             </ul>
         </aside>
 
-        <!-- 右側主內容 -->
+        <!-- 主內容 -->
         <main class="main-content">
+            <!-- 上方工具列 -->
             <header class="top-bar">
-                <div class="top-left">
-                    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-                    <h1>Hospital Respiratory Monitoring System</h1>
+                <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                <h1 class="app-title">MED-Share Monitor</h1>
+                <div class="nav-tabs">
+                    <a href="index.html" class="nav-btn active">總覽</a>
+                    <a href="rentals.html" class="nav-btn">共享租借</a>
+                    <a href="analytics.html" class="nav-btn">商業智慧分析</a>
                 </div>
-
-                <div class="top-tabs">
-                    <button class="tab-btn active" data-view="overview">總覽</button>
-                    <button class="tab-btn" data-view="rental">共享租借</button>
-                    <button class="tab-btn" data-view="bi">商業智慧分析</button>
-                </div>
-
                 <div class="user-profile">
                     <span>Dr. Yang (R.T.)</span>
                     <i class="fa-solid fa-user-doctor"></i>
                 </div>
             </header>
 
-            <!-- 總覽頁 -->
-            <section id="view-overview" class="view active">
-                <div class="stats-grid">
-                    <div class="card stat-card">
-                        <div class="stat-icon bg-green"><i class="fa-solid fa-check"></i></div>
-                        <div class="stat-info">
-                            <h3>穩定患者</h3>
-                            <p>18 人</p>
-                        </div>
-                    </div>
-                    <div class="card stat-card">
-                        <div class="stat-icon bg-yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div class="stat-info">
-                            <h3>需注意</h3>
-                            <p>5 人</p>
-                        </div>
-                    </div>
-                    <div class="card stat-card">
-                        <div class="stat-icon bg-red"><i class="fa-solid fa-bed-pulse"></i></div>
-                        <div class="stat-info">
-                            <h3>高風險 / 緊急</h3>
-                            <p>2 人</p>
-                        </div>
+            <!-- 數量統計卡片 -->
+            <div class="stats-grid">
+                <div class="card stat-card">
+                    <div class="stat-icon bg-green"><i class="fa-solid fa-check"></i></div>
+                    <div class="stat-info">
+                        <h3>穩定患者</h3>
+                        <p>18 人</p>
                     </div>
                 </div>
+                <div class="card stat-card">
+                    <div class="stat-icon bg-yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="stat-info">
+                        <h3>需注意</h3>
+                        <p>5 人</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon bg-red"><i class="fa-solid fa-bed-pulse"></i></div>
+                    <div class="stat-info">
+                        <h3>高風險 / 緊急</h3>
+                        <p>2 人</p>
+                    </div>
+                </div>
+            </div>
 
-                <div class="card table-card">
-                    <div class="card-header">
-                        <h3>最近異常事件監測</h3>
-                    </div>
-                    <table class="styled-table overview-table">
-                        <thead>
-                            <tr>
-                                <th>時間</th>
-                                <th>病患姓名</th>
-                                <th>病患編號</th>
-                                <th>事件類型</th>
-                                <th>數值</th>
-                                <th>狀態</th>
-                                <th>AI 建議</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>10:42 AM</td>
-                                <td>吳宥辰</td>
-                                <td>P001</td>
-                                <td>SpO₂ 過低</td>
-                                <td class="text-red">88%</td>
-                                <td><span class="badge badge-red">未處理</span></td>
-                                <td>
-                                    <span class="ai-tag ai-red">
-                                        建議立即評估是否需調整 FiO₂ 或改用 HFNC / NPPV
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10:15 AM</td>
-                                <td>陳大明</td>
-                                <td>P003</td>
-                                <td>RR 呼吸急促</td>
-                                <td class="text-yellow">28 bpm</td>
-                                <td><span class="badge badge-yellow">觀察中</span></td>
-                                <td>
-                                    <span class="ai-tag ai-yellow">
-                                        建議評估焦慮、疼痛或肺部惡化，並追蹤 RR 變化
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>09:50 AM</td>
-                                <td>黃阿姨</td>
-                                <td>P010</td>
-                                <td>HR 心率過高</td>
-                                <td class="text-yellow">115 bpm</td>
-                                <td><span class="badge badge-green">已解決</span></td>
-                                <td>
-                                    <span class="ai-tag ai-blue">
-                                        建議列入日後心肺負荷追蹤指標
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- 最近異常事件 -->
+            <div class="card table-card">
+                <div class="card-header">
+                    <h3>最近異常事件監測</h3>
                 </div>
-            </section>
-
-            <!-- 共享租借頁 -->
-            <section id="view-rental" class="view">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>共享租借管理</h3>
-                        <div class="toolbar">
-                            <input type="text" class="search-input" placeholder="搜尋病患姓名或編號">
-                            <select class="filter-select">
-                                <option>全部狀態</option>
-                                <option>使用中</option>
-                                <option>即將到期</option>
-                                <option>已逾期</option>
-                            </select>
-                        </div>
-                    </div>
-                    <table class="styled-table rental-table">
-                        <thead>
-                            <tr>
-                                <th>病患姓名</th>
-                                <th>病患編號</th>
-                                <th>儀器名稱</th>
-                                <th>設備編號</th>
-                                <th>租借起始</th>
-                                <th>預計歸還</th>
-                                <th>狀態</th>
-                                <th>AI 建議</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>吳宥辰</td>
-                                <td>P001</td>
-                                <td>可攜式肺量計</td>
-                                <td>SP-PLM-004</td>
-                                <td>2025-11-20 14:30</td>
-                                <td>2025-11-27 14:30</td>
-                                <td><span class="badge badge-yellow">即將到期</span></td>
-                                <td>
-                                    <span class="ai-tag ai-yellow rental-note">
-                                        建議於 24 小時內提醒病患回診歸還，以避免設備遺失
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>林小美</td>
-                                <td>P002</td>
-                                <td>家用製氧機</td>
-                                <td>OX-HOME-102</td>
-                                <td>2025-10-01 10:00</td>
-                                <td>2026-01-01 10:00</td>
-                                <td><span class="badge badge-green">使用中</span></td>
-                                <td>
-                                    <span class="ai-tag ai-blue rental-note">
-                                        依目前 SpO₂ 與再入院率，建議維持現行居家氧療並每月追蹤一次
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>陳大明</td>
-                                <td>P003</td>
-                                <td>睡眠呼吸監測器</td>
-                                <td>SLP-APN-221</td>
-                                <td>2025-11-10 20:00</td>
-                                <td>2025-11-17 09:00</td>
-                                <td><span class="badge badge-red">已逾期</span></td>
-                                <td>
-                                    <span class="ai-tag ai-red rental-note">
-                                        建議聯絡個案管理師確認設備去向，並評估是否影響睡眠呼吸暫停評估時程
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>張志豪</td>
-                                <td>P004</td>
-                                <td>家用血氧監測手環</td>
-                                <td>OX-BAND-007</td>
-                                <td>2025-11-01 09:00</td>
-                                <td>2025-12-01 09:00</td>
-                                <td><span class="badge badge-green">使用中</span></td>
-                                <td>
-                                    <span class="ai-tag ai-blue rental-note">
-                                        建議每週產出夜間 SpO₂ 趨勢報告，提供門診醫師調整處置
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>劉恩希</td>
-                                <td>P005</td>
-                                <td>可攜式 Capnography</td>
-                                <td>ETCO2-015</td>
-                                <td>2025-11-18 15:00</td>
-                                <td>2025-11-25 15:00</td>
-                                <td><span class="badge badge-yellow">即將到期</span></td>
-                                <td>
-                                    <span class="ai-tag ai-yellow rental-note">
-                                        建議歸還前上傳完整一週 EtCO₂ 紀錄，評估換氣狀況
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- 商業智慧分析頁 -->
-            <section id="view-bi" class="view">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>商業智慧分析總覽</h3>
-                    </div>
-                    <div class="bi-kpi-grid">
-                        <div class="kpi-item">
-                            <div class="kpi-label">過去 30 天再入院率</div>
-                            <div class="kpi-value">-18%</div>
-                            <div class="kpi-sub">與去年同期相比</div>
-                        </div>
-                        <div class="kpi-item">
-                            <div class="kpi-label">平均 SpO₂ 低於 92% 時數</div>
-                            <div class="kpi-value">↓ 32%</div>
-                            <div class="kpi-sub">導入遠距監測後</div>
-                        </div>
-                        <div class="kpi-item">
-                            <div class="kpi-label">設備使用率</div>
-                            <div class="kpi-value">87%</div>
-                            <div class="kpi-sub">近一週平均</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="charts-grid bi-charts">
-                    <div class="card chart-card">
-                        <h3><i class="fa-solid fa-wave-square"></i> 低血氧事件趨勢（次 / 週）</h3>
-                        <canvas id="biEventTrend"></canvas>
-                    </div>
-                    <div class="card chart-card">
-                        <h3><i class="fa-solid fa-stethoscope"></i> 各設備貢獻的再入院率下降指標</h3>
-                        <canvas id="biDeviceRadar"></canvas>
-                    </div>
-                    <div class="card chart-card">
-                        <h3><i class="fa-solid fa-clock-rotate-left"></i> 逾期歸還設備比例（移動平均）</h3>
-                        <canvas id="biOverdueLine"></canvas>
-                    </div>
-                </div>
-            </section>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>病患姓名</th>
+                            <th>病患編號</th>
+                            <th>事件類型</th>
+                            <th>數值</th>
+                            <th>狀態</th>
+                            <th>AI 建議</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:42 AM</td>
+                            <td>吳宥辰</td>
+                            <td>P001</td>
+                            <td>SpO₂ 過低</td>
+                            <td class="text-red">88%</td>
+                            <td><span class="badge badge-red">未處理</span></td>
+                            <td>
+                                <span class="ai-tag ai-danger">
+                                    建議立即評估是否需調整 FiO₂ 或改用 HFNC / NPPV
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10:15 AM</td>
+                            <td>陳大明</td>
+                            <td>P003</td>
+                            <td>RR 呼吸急促</td>
+                            <td class="text-yellow">28 bpm</td>
+                            <td><span class="badge badge-yellow">觀察中</span></td>
+                            <td>
+                                <span class="ai-tag ai-warning">
+                                    建議評估焦慮、疼痛或肺部惡化，並追蹤 RR 變化
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>09:50 AM</td>
+                            <td>黃阿姨</td>
+                            <td>P010</td>
+                            <td>HR 心率過高</td>
+                            <td class="text-yellow">115 bpm</td>
+                            <td><span class="badge badge-green">已解決</span></td>
+                            <td>
+                                <span class="ai-tag ai-info">
+                                    建議列入日後心肺負荷追蹤指標
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </div>
 
